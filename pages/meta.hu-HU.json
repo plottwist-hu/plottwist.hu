@@ -1,0 +1,15 @@
+{
+  "index": {
+    "title": "Introduction",
+    "type": "page",
+    "hidden": true
+  },
+  "blog": {
+    "title": "Blog",
+    "type": "page"
+  },
+  "contact-us": {
+    "title": "Kapcsolat",
+    "type": "page"
+  }
+}
