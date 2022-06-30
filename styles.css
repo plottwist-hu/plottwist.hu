@@ -31,3 +31,7 @@ body {
     fixed 0 0 / 20px 20px radial-gradient(#313131 1px, transparent 0),
     fixed 10px 10px / 20px 20px radial-gradient(#313131 1px, transparent 0);
 }
+
+main > div.text-xs.text-right.block.text-gray-500.mt-12.mb-8.dark\:text-gray-400.pointer-default {
+  display: none;
+}
