@@ -1,0 +1,966 @@
+/* plottwist.hu: the construction drawing. Tokens live in tokens.css. */
+
+:root {
+	--gutter: clamp(20px, 5vw, 64px);
+	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+	--muted-on-tile: #aab8cc;
+	--grid-line: color-mix(in srgb, var(--pt-neutral-800) 70%, transparent);
+	--rule: linear-gradient(to right, transparent, var(--pt-divider) 48px, var(--pt-divider) calc(100% - 48px), transparent);
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	color-scheme: dark;
+	scroll-behavior: smooth;
+	scroll-padding-top: 24px;
+	-webkit-text-size-adjust: 100%;
+	scrollbar-color: var(--pt-tile) var(--pt-ground);
+}
+
+body {
+	margin: 0;
+	background: var(--pt-ground);
+	color: var(--pt-text);
+	font-family: var(--pt-font);
+	font-size: 1.0625rem;
+	line-height: 1.6;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3 {
+	margin: 0;
+	font-weight: 500;
+	letter-spacing: -0.02em;
+	line-height: 1.1;
+	color: var(--pt-line);
+	text-wrap: balance;
+}
+
+p {
+	margin: 0;
+	text-wrap: pretty;
+}
+
+a {
+	color: var(--pt-base);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.22em;
+	transition: color 160ms ease-out;
+}
+
+a:hover {
+	color: var(--pt-light);
+}
+
+:focus-visible {
+	outline: 2px solid var(--pt-base);
+	outline-offset: 3px;
+	border-radius: 2px;
+}
+
+::selection {
+	background: color-mix(in srgb, var(--pt-base) 35%, transparent);
+	color: var(--pt-line);
+}
+
+code {
+	font-family: var(--pt-font-mono);
+	font-size: 0.875em;
+}
+
+.wrap {
+	width: min(100% - 2 * var(--gutter), 1200px);
+	margin-inline: auto;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+.skip-link {
+	position: absolute;
+	top: 12px;
+	left: 12px;
+	z-index: 10;
+	padding: 8px 14px;
+	border-radius: 8px;
+	background: var(--pt-light);
+	color: var(--pt-ground);
+	translate: 0 -200%;
+}
+
+.skip-link:focus-visible {
+	translate: 0 0;
+}
+
+/* — buttons and links — */
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 16px;
+	border: 1px solid var(--pt-base);
+	border-radius: 8px;
+	color: var(--pt-light);
+	font-size: 0.9375rem;
+	font-weight: 500;
+	line-height: 1.2;
+	text-decoration: none;
+	white-space: nowrap;
+	transition:
+		background-color 160ms ease-out,
+		color 160ms ease-out;
+}
+
+.btn:hover {
+	background: color-mix(in srgb, var(--pt-base) 14%, transparent);
+	color: var(--pt-line);
+}
+
+.btn:active {
+	background: color-mix(in srgb, var(--pt-base) 24%, transparent);
+}
+
+.btn-lg {
+	padding: 14px 22px;
+	font-size: 1.0625rem;
+}
+
+.text-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-weight: 500;
+	text-decoration: none;
+}
+
+.text-link:hover {
+	text-decoration: underline;
+}
+
+.arrow {
+	flex: none;
+	width: 1em;
+	height: 1em;
+}
+
+/* — header — */
+
+.site-header {
+	display: flex;
+	align-items: center;
+	gap: 40px;
+	padding-block: 22px;
+}
+
+.lockup {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	color: var(--pt-text);
+	text-decoration: none;
+}
+
+.lockup:hover {
+	color: var(--pt-line);
+}
+
+.wordmark {
+	font-size: 1.125rem;
+	font-weight: 500;
+	letter-spacing: -0.03em;
+}
+
+.site-nav ul {
+	display: flex;
+	gap: 28px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.site-nav a {
+	color: var(--pt-muted);
+	font-size: 0.9375rem;
+	text-decoration: none;
+}
+
+.site-nav a:hover {
+	color: var(--pt-light);
+}
+
+.header-end {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	margin-left: auto;
+}
+
+.lang-switch {
+	padding: 5px 8px;
+	border: 1px solid var(--pt-divider);
+	border-radius: 6px;
+	color: var(--pt-muted);
+	font-family: var(--pt-font-mono);
+	font-size: 0.8125rem;
+	line-height: 1;
+	text-decoration: none;
+}
+
+.lang-switch:hover {
+	border-color: var(--pt-base);
+	color: var(--pt-light);
+}
+
+/* — hero — */
+
+.hero {
+	display: grid;
+	grid-template-columns: minmax(0, 4.6fr) minmax(0, 7.4fr);
+	gap: clamp(24px, 4vw, 64px);
+	align-items: center;
+	min-height: calc(100svh - 86px);
+	padding-block: clamp(24px, 4vw, 48px) clamp(48px, 6vw, 80px);
+}
+
+.hero h1 {
+	font-size: clamp(2.5rem, 1.5rem + 3vw, 3.75rem);
+	line-height: 1.02;
+}
+
+.twist-words {
+	display: block;
+	color: var(--pt-base);
+}
+
+.lead {
+	margin-top: 24px;
+	max-width: 36ch;
+	color: var(--pt-neutral-300);
+	font-size: 1.1875rem;
+	line-height: 1.55;
+}
+
+.actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 14px 24px;
+	margin-top: 36px;
+}
+
+/* — the drawing — */
+
+/* The viewBox is 4 4 168 112; labels convert drawing units with these. */
+.drawing {
+	--vb-x: 4;
+	--vb-y: 4;
+	--vb-w: 168;
+	position: relative;
+	margin: 0;
+	container-type: inline-size;
+}
+
+/* The guides fade out, so the drawing can run into the page gutter. */
+@media (min-width: 901px) {
+	.drawing {
+		margin-right: calc(var(--gutter) * -0.75);
+	}
+}
+
+.drawing-canvas {
+	position: relative;
+	aspect-ratio: 168 / 112;
+}
+
+/* The drawing's own 4-unit grid: 168 / 4 = 42 columns, 112 / 4 = 28 rows. */
+.drawing-canvas::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background-image:
+		linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+		linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+	background-size: calc(100% / 42) calc(100% / 28);
+	mask-image: radial-gradient(closest-side, #000 55%, transparent);
+	pointer-events: none;
+}
+
+.drawing-canvas svg {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+.drawing svg :is(line, path, circle) {
+	vector-effect: non-scaling-stroke;
+}
+
+/* Guides fade out at both ends, like the brand's freestanding rules. */
+.guides line {
+	stroke-width: 1;
+	opacity: 0.5;
+	transform-origin: 0 0;
+}
+
+.gh {
+	stroke: url(#fade-x);
+}
+
+.gv {
+	stroke: url(#fade-y);
+}
+
+.drawing stop {
+	stop-color: var(--pt-neutral-600);
+}
+
+.drawing stop.fade-end {
+	stop-opacity: 0;
+}
+
+.radius {
+	fill: none;
+	stroke: var(--pt-base);
+	stroke-width: 1;
+	stroke-dasharray: 3 3;
+	opacity: 0.85;
+}
+
+.half-l {
+	fill: var(--pt-base);
+}
+
+.half-r path:not(.leader) {
+	fill: var(--pt-light);
+}
+
+.dims path,
+.twist path {
+	fill: none;
+	stroke: var(--pt-muted);
+	stroke-width: 1;
+}
+
+.twist path:not(.leader) {
+	stroke: var(--pt-light);
+}
+
+.leader {
+	fill: none;
+	stroke: var(--pt-line);
+	stroke-width: 1;
+	opacity: 0.75;
+}
+
+.dot {
+	fill: var(--pt-line);
+}
+
+.labels {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+}
+
+/* Labels sit in drawing units; 100cqw is the drawing's width (--vb-w units). */
+.labels > span {
+	position: absolute;
+	left: calc((var(--x) - var(--vb-x)) * 100cqw / var(--vb-w));
+	top: calc((var(--y) - var(--vb-y)) * 100cqw / var(--vb-w));
+	translate: 0 -50%;
+	white-space: nowrap;
+}
+
+.dim {
+	padding: 0 3px;
+	background: var(--pt-ground);
+	color: var(--pt-muted);
+	font-family: var(--pt-font-mono);
+	font-size: 0.75rem;
+	line-height: 1.4;
+}
+
+.labels > .dim {
+	translate: -50% -50%;
+}
+
+.labels > .dim-twist,
+.labels > .dim-start {
+	translate: 0 -50%;
+}
+
+.labels > .dim-end {
+	translate: -100% -50%;
+}
+
+.dim-twist {
+	color: var(--pt-light);
+}
+
+.callout {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	color: var(--pt-text);
+	font-size: 0.9375rem;
+	font-weight: 500;
+	letter-spacing: -0.01em;
+}
+
+.labels > .callout-end {
+	translate: -100% -50%;
+}
+
+.callout-end .callout-text {
+	max-width: 7em;
+	line-height: 1.2;
+	text-align: right;
+	white-space: normal;
+}
+
+.balloon {
+	display: inline-grid;
+	place-items: center;
+	flex: none;
+	width: 26px;
+	height: 26px;
+	border: 1px solid var(--pt-base);
+	border-radius: 50%;
+	background: var(--pt-ground);
+	color: var(--pt-light);
+	font-family: var(--pt-font-mono);
+	font-size: 0.75rem;
+	font-weight: 400;
+	line-height: 1;
+}
+
+/* The one authored moment: guides draw, then the right half rises into its offset. */
+@media (prefers-reduced-motion: no-preference) {
+	.gh {
+		animation: grow-x 1100ms var(--ease-out) both;
+	}
+
+	.gv {
+		animation: grow-y 1100ms var(--ease-out) both;
+	}
+
+	.guides line:nth-child(2n) {
+		animation-delay: 80ms;
+	}
+
+	.guides line:nth-child(3n) {
+		animation-delay: 160ms;
+	}
+
+	.half-r {
+		animation: twist 1200ms var(--ease-out) 650ms both;
+	}
+
+	.callout-b {
+		animation: twist-label 1200ms var(--ease-out) 650ms both;
+	}
+
+	.twist {
+		animation: appear 600ms ease-out 1450ms both;
+	}
+}
+
+@keyframes grow-x {
+	from {
+		transform: scaleX(0);
+	}
+}
+
+@keyframes grow-y {
+	from {
+		transform: scaleY(0);
+	}
+}
+
+/* Starts aligned (the one thing the mark must never be), ends twisted. */
+@keyframes twist {
+	from {
+		transform: translateY(10px);
+	}
+}
+
+@keyframes twist-label {
+	from {
+		translate: 0 calc(-50% + 1000cqw / 168);
+	}
+}
+
+@keyframes appear {
+	from {
+		opacity: 0;
+	}
+}
+
+/* — sections — */
+
+.section {
+	padding-block: clamp(72px, 10vw, 136px);
+}
+
+.section-head {
+	display: grid;
+	grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+	gap: 16px clamp(24px, 4vw, 64px);
+	align-items: end;
+	margin-bottom: clamp(36px, 5vw, 56px);
+}
+
+.section-head h2 {
+	font-size: clamp(2rem, 1.4rem + 2vw, 3rem);
+}
+
+.section-head p {
+	max-width: 52ch;
+	color: var(--pt-neutral-300);
+	font-size: 1.125rem;
+}
+
+.schedule-also {
+	margin-top: 40px;
+	color: var(--pt-neutral-300);
+}
+
+.schedule-also span {
+	margin-right: 8px;
+	color: var(--pt-muted);
+}
+
+/* — spec tables (revisions) — */
+
+.spec-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.spec-table th,
+.spec-table td {
+	padding: 24px 24px 24px 0;
+	text-align: left;
+	vertical-align: baseline;
+}
+
+.spec-table thead th {
+	padding-block: 0 14px;
+	color: var(--pt-muted);
+	font-size: 0.75rem;
+	font-weight: 500;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.spec-table tr {
+	background: var(--rule) no-repeat bottom / 100% 1px;
+}
+
+.spec-table .col-ref {
+	width: 56px;
+}
+
+.spec-table tbody .col-ref {
+	vertical-align: middle;
+}
+
+/* — services schedule: one column per part on the drawing — */
+
+.schedule {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 48px clamp(24px, 4vw, 56px);
+	align-items: start;
+}
+
+.schedule-group h3 {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding-bottom: 18px;
+	background: var(--rule) no-repeat bottom / 100% 1px;
+	color: var(--pt-light);
+	font-size: 1.125rem;
+}
+
+.schedule-lead {
+	min-height: 3.2em;
+	margin-top: 16px;
+	color: var(--pt-neutral-300);
+}
+
+.schedule-group ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.schedule-group li {
+	padding-block: 18px;
+	background: var(--rule) no-repeat bottom / 100% 1px;
+	color: var(--pt-line);
+	font-size: clamp(1.25rem, 1.05rem + 0.7vw, 1.625rem);
+	font-weight: 500;
+	letter-spacing: -0.02em;
+	line-height: 1.2;
+}
+
+.revisions tbody th {
+	width: 28%;
+	color: var(--pt-line);
+	font-size: 1.125rem;
+	font-weight: 500;
+}
+
+.revisions td {
+	color: var(--pt-neutral-300);
+}
+
+.revisions .rev {
+	color: var(--pt-base);
+	font-family: var(--pt-font-mono);
+	font-size: 0.875rem;
+}
+
+/* — plugin band — */
+
+.band-tile {
+	background: var(--pt-tile);
+	--pt-divider: color-mix(in srgb, var(--pt-light) 22%, transparent);
+	--rule: linear-gradient(to right, transparent, var(--pt-divider) 48px, var(--pt-divider) calc(100% - 48px), transparent);
+}
+
+.band-tile .section-head p,
+.band-tile .sheet-intro p {
+	color: var(--muted-on-tile);
+}
+
+.band-tile .btn {
+	border-color: var(--pt-light);
+}
+
+.band-tile a:not(.btn) {
+	color: var(--pt-light);
+}
+
+.band-tile a:not(.btn):hover {
+	color: var(--pt-line);
+}
+
+.sheet {
+	display: grid;
+	grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+	gap: 40px clamp(24px, 4vw, 64px);
+	align-items: start;
+}
+
+.plugin-name {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	margin-bottom: 18px;
+}
+
+.plugin-icon {
+	flex: none;
+	width: 56px;
+	height: 56px;
+	border-radius: 13px;
+}
+
+.plugin-name h3 {
+	font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+}
+
+.sheet-intro p {
+	max-width: 42ch;
+	font-size: 1.0625rem;
+}
+
+.sheet-intro .actions {
+	margin-top: 28px;
+}
+
+.spec-list {
+	margin: 0;
+	background: var(--rule) no-repeat top / 100% 1px;
+}
+
+.spec-list > div {
+	display: grid;
+	grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+	gap: 16px;
+	padding-block: 14px;
+	background: var(--rule) no-repeat bottom / 100% 1px;
+}
+
+.spec-list dt {
+	color: var(--muted-on-tile);
+}
+
+.spec-list dd {
+	margin: 0;
+	color: var(--pt-line);
+	font-family: var(--pt-font-mono);
+	font-size: 0.9375rem;
+	font-variant-numeric: tabular-nums;
+}
+
+/* — contact title block — */
+
+.contact {
+	padding-block: clamp(48px, 7vw, 96px) clamp(72px, 10vw, 136px);
+}
+
+.titleblock {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 18px;
+	padding: clamp(28px, 4vw, 56px);
+	border: 1px solid color-mix(in srgb, var(--pt-text) 22%, transparent);
+	border-radius: 2px;
+	background: var(--pt-ground);
+}
+
+.titleblock h2 {
+	font-size: clamp(2rem, 1.4rem + 2vw, 3rem);
+}
+
+.titleblock p {
+	max-width: 40ch;
+	margin-bottom: 12px;
+	color: var(--pt-neutral-300);
+	font-size: 1.125rem;
+}
+
+/* — footer — */
+
+.site-footer {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 20px 40px;
+	padding-block: 36px 48px;
+	background: var(--rule) no-repeat top / 100% 1px;
+	color: var(--pt-muted);
+	font-size: 0.875rem;
+}
+
+.footer-brand {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.footer-brand > div {
+	display: flex;
+	flex-direction: column;
+	line-height: 1.3;
+}
+
+.footer-brand .wordmark {
+	color: var(--pt-text);
+	font-size: 1rem;
+}
+
+.footer-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 24px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.footer-links a {
+	color: var(--pt-muted);
+	text-decoration: none;
+}
+
+.footer-links a:hover {
+	color: var(--pt-light);
+}
+
+.footer-copy {
+	margin-left: auto;
+}
+
+/* — blog — */
+
+.page-top {
+	padding-top: clamp(32px, 6vw, 72px);
+}
+
+.page-title {
+	font-size: clamp(2.25rem, 1.6rem + 2.4vw, 3.5rem);
+}
+
+.post-list {
+	max-width: 68ch;
+	margin: 40px 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.post-list li {
+	display: grid;
+	gap: 6px;
+	padding-block: 24px;
+	background: var(--rule) no-repeat bottom / 100% 1px;
+}
+
+.post-list time,
+.prose time {
+	color: var(--pt-muted);
+	font-family: var(--pt-font-mono);
+	font-size: 0.8125rem;
+}
+
+.post-list a {
+	font-size: 1.375rem;
+	font-weight: 500;
+	letter-spacing: -0.02em;
+	text-decoration: none;
+}
+
+.post-list p {
+	color: var(--pt-neutral-300);
+}
+
+.prose {
+	max-width: calc(68ch + 2 * var(--gutter));
+}
+
+.prose .back {
+	margin-bottom: 28px;
+	font-size: 0.9375rem;
+}
+
+.prose time {
+	display: block;
+	margin-top: 14px;
+	margin-bottom: 32px;
+}
+
+.prose p {
+	margin-bottom: 1.1em;
+	color: var(--pt-neutral-300);
+	font-size: 1.125rem;
+}
+
+/* — responsive — */
+
+@media (max-width: 900px) {
+	.site-header {
+		flex-wrap: wrap;
+		row-gap: 14px;
+	}
+
+	.site-nav {
+		order: 3;
+		width: 100%;
+		overflow-x: auto;
+	}
+
+	.hero,
+	.section-head,
+	.sheet,
+	.schedule {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.hero {
+		gap: 40px;
+	}
+
+}
+
+@media (max-width: 720px) {
+	.spec-table thead {
+		display: none;
+	}
+
+	.spec-table tr {
+		display: grid;
+		grid-template-columns: 44px minmax(0, 1fr);
+		gap: 6px 0;
+		padding-block: 22px;
+	}
+
+	.spec-table th,
+	.spec-table td {
+		width: auto !important;
+		padding: 0;
+	}
+
+	.spec-table .col-ref {
+		grid-row: span 3;
+	}
+
+	.footer-copy {
+		margin-left: 0;
+	}
+}
+
+@media (max-width: 560px) {
+	.site-header {
+		column-gap: 16px;
+	}
+
+	/* The hero's own button is in the first viewport. */
+	.header-end .btn {
+		display: none;
+	}
+
+	.site-nav ul {
+		flex-wrap: wrap;
+		gap: 6px 20px;
+	}
+}
+
+.drawing-key {
+	display: none;
+}
+
+/* Narrow drawings keep the balloons and name them in a key below. */
+@container (max-width: 520px) {
+	.callout-text {
+		display: none;
+	}
+
+	.drawing-key {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px 20px;
+		margin-top: 8px;
+		color: var(--pt-text);
+		font-size: 0.9375rem;
+		font-weight: 500;
+	}
+
+	.drawing-key > span {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+	}
+}

@@ -1,0 +1,25 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Site from '../layouts/Site.astro';
+import Arrow from './Arrow.astro';
+import { strings, localePath, type Lang } from '../i18n/strings';
+
+interface Props {
+	lang: Lang;
+	post: CollectionEntry<'blog'>;
+}
+const { lang, post } = Astro.props;
+const t = strings[lang];
+const slug = post.id.split('/')[1];
+const { Content } = await render(post);
+const date = new Intl.DateTimeFormat(lang, { dateStyle: 'long' });
+---
+
+<Site lang={lang} title={`${post.data.title} · Plot Twist`} description={post.data.description} altPath={localePath(lang === 'en' ? 'hu' : 'en', `/blog/${slug}/`)}>
+	<article class="section wrap page-top prose">
+		<a class="text-link back" href={localePath(lang, '/blog/')}>{t.blog.back}</a>
+		<h1 class="page-title">{post.data.title}</h1>
+		<time datetime={post.data.date.toISOString().slice(0, 10)}>{date.format(post.data.date)}</time>
+		<Content />
+	</article>
+</Site>

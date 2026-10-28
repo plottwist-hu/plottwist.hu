@@ -1,16 +1,20 @@
 # [Plot Twist website](https://plottwist.hu)
 
-The official website for [Plot Twist](https://plottwist.hu).
+The official website for [Plot Twist](https://plottwist.hu), and the home of the Plot Twist plugin docs.
 
-The project uses [pnpm](https://pnpm.io), [Nextra](https://nextra.vercel.app) and deploys via [Vercel](https://vercel.com). To develop it locally, clone this repository and run the following command to start the local dev server:
+The project uses [pnpm](https://pnpm.io), [Astro](https://astro.build) and [Starlight](https://starlight.astro.build) (for `/docs/`). It needs Node.js 22.23.4 or later (see `.node-version`). To develop it locally, run:
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-And visit `localhost:3000` to preview your changes.
+And visit `localhost:4321` to preview your changes.
 
-## Contributing
+## Content
 
-When making a change, or creating a new page, please make sure to edit all language files. You can simply copy the content of the edited English document (or the edited paragraph) and apply it to other language files. And then, volunteers are welcome to help with any untranslated sections.
+- Company pages: `src/components/Home.astro`, with the English and Hungarian copy in `src/i18n/strings.ts`.
+- Blog: `src/content/blog/en/` and `src/content/blog/hu/`. Use the same file name in both folders.
+- Docs: `src/content/docs/docs/<plugin>/` (English) and `src/content/docs/<locale>/docs/<plugin>/` (other languages). The source of the Advanced Pixel for Barion docs is the plugin repo's `docs/` folder.
+
+When you edit a page, edit all language versions.
