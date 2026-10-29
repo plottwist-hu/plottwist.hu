@@ -12,15 +12,15 @@ const t = strings[lang];
 <footer class="site-footer wrap">
 	<div class="footer-brand">
 		<Mark height={22} />
-		<div>
-			<span class="wordmark">Plot Twist</span>
-			<span class="footer-tagline">{t.footer.tagline}</span>
-		</div>
+		<span class="wordmark">Plot Twist</span>
 	</div>
 	<ul class="footer-links">
 		<li><a href={localePath(lang, '/docs/advanced-pixel-for-barion/')}>{t.footer.docs}</a></li>
 		<li><a href={localePath(lang, '/blog/')}>{t.nav.blog}</a></li>
 		<li><a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>
+		<li><a href="https://www.linkedin.com/company/plottwist-hu">LinkedIn</a></li>
+		<li><a href="https://www.facebook.com/plottwist.hu">Facebook</a></li>
+		<li><a href="https://github.com/plottwist-hu">GitHub</a></li>
 	</ul>
 	<p class="footer-copy">© {new Date().getFullYear()} Plot Twist</p>
 </footer>

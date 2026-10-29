@@ -5,7 +5,7 @@ sidebar:
 ---
 
 :::note
-To je samodejni prevod. Popravki skupnosti so dobrodošli!
+To je samodejni prevod. Popravki skupnosti so dobrodošli! [Pošljite popravek na GitHubu](https://github.com/gcsecsey/advanced-pixel-for-barion/edit/main/docs/i18n/sl/cookie-consent.md)
 :::
 
 ## Pregled

@@ -27,6 +27,10 @@ const at = (x: number, y: number) => `--x:${x};--y:${y}`;
 					<stop offset="0.85"></stop>
 					<stop offset="1" class="fade-end"></stop>
 				</linearGradient>
+				<filter id="glow" x="-25%" y="-15%" width="150%" height="130%">
+					<feDropShadow dx="0" dy="0" stdDeviation="0.25" class="glow-near"></feDropShadow>
+					<feDropShadow dx="0" dy="0" stdDeviation="1" class="glow-far"></feDropShadow>
+				</filter>
 			</defs>
 			<g class="guides">
 				<line class="gh" x1="0" y1="26" x2="180" y2="26"></line>

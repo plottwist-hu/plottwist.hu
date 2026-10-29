@@ -5,7 +5,7 @@ sidebar:
 ---
 
 :::note
-Toto je automatický preklad. Komunitné opravy sú vítané!
+Toto je automatický preklad. Komunitné opravy sú vítané! [Odoslať opravu na GitHube](https://github.com/gcsecsey/advanced-pixel-for-barion/edit/main/docs/i18n/sk/testing-notes.md)
 :::
 
 ## Zvláštnosti validácie bp.js za behu

@@ -5,7 +5,7 @@ sidebar:
 ---
 
 :::note
-Aceasta este o traducere automată. Corecțiile comunității sunt binevenite!
+Aceasta este o traducere automată. Corecțiile comunității sunt binevenite! [Trimiteți o corectură pe GitHub](https://github.com/gcsecsey/advanced-pixel-for-barion/edit/main/docs/i18n/ro/cookie-consent.md)
 :::
 
 ## Prezentare generală

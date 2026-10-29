@@ -5,7 +5,7 @@ sidebar:
 ---
 
 :::note
-Ez egy automatikus fordítás. Közösségi javítások szívesen fogadottak!
+Ez egy automatikus fordítás. Közösségi javítások szívesen fogadottak! [Javítás beküldése a GitHubon](https://github.com/gcsecsey/advanced-pixel-for-barion/edit/main/docs/i18n/hu/cookie-consent.md)
 :::
 
 ## Áttekintés

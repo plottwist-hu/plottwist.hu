@@ -1,6 +1,6 @@
 ---
 import Mark from './Mark.astro';
-import { strings, localePath, EMAIL, type Lang } from '../i18n/strings';
+import { strings, localePath, type Lang } from '../i18n/strings';
 
 interface Props {
 	lang: Lang;
@@ -9,7 +9,6 @@ interface Props {
 const { lang, altPath } = Astro.props;
 const t = strings[lang];
 const home = localePath(lang, '/');
-const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(t.mailSubject)}`;
 ---
 
 <header class="site-header wrap">
@@ -30,6 +29,6 @@ const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(t.mailSubject)}`;
 			<span class="visually-hidden">{t.langSwitch.label}</span>
 			<span aria-hidden="true">{t.langSwitch.short}</span>
 		</a>
-		<a class="btn" href={mailto}>{t.nav.cta}</a>
+		<a class="btn" href={`${home}#contact`}>{t.nav.cta}</a>
 	</div>
 </header>

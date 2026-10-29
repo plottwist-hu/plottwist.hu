@@ -1,11 +1,21 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
+import cloudflare from '@astrojs/cloudflare';
 import starlight from '@astrojs/starlight';
 
 const docsLocales = ['hu', 'cs', 'sk', 'de', 'hr', 'ro', 'sl', 'sr'];
 
 export default defineConfig({
 	site: 'https://plottwist.hu',
+	// Pages stay prerendered; only the contact form endpoint runs in the Worker.
+	adapter: cloudflare({ imageService: 'compile' }),
+	// Nothing uses sessions, and enabling them would provision a KV namespace on deploy.
+	session: false,
+	env: {
+		schema: {
+			TURNSTILE_SITE_KEY: envField.string({ context: 'client', access: 'public' }),
+		},
+	},
 	redirects: {
 		// Old Nextra URLs.
 		'/contact-us': '/#contact',
@@ -21,11 +31,9 @@ export default defineConfig({
 	},
 	integrations: [
 		starlight({
-			title: 'Plot Twist',
-			logo: {
-				light: './src/assets/mark-on-light.svg',
-				dark: './src/assets/mark-on-dark.svg',
-			},
+			title: 'Advanced Pixel for Barion',
+			logo: { src: './src/assets/plugins/advanced-pixel-for-barion.png' },
+			routeMiddleware: './src/routeData.ts',
 			favicon: '/favicon.svg',
 			defaultLocale: 'root',
 			locales: {
@@ -46,12 +54,7 @@ export default defineConfig({
 					href: 'https://github.com/gcsecsey/advanced-pixel-for-barion',
 				},
 			],
-			sidebar: [
-				{
-					label: 'Advanced Pixel for Barion',
-					items: [{ autogenerate: { directory: 'docs/advanced-pixel-for-barion' } }],
-				},
-			],
+			sidebar: [{ autogenerate: { directory: 'docs/advanced-pixel-for-barion' } }],
 			customCss: [
 				'@fontsource-variable/geist',
 				'@fontsource-variable/geist-mono',

@@ -5,7 +5,7 @@ sidebar:
 ---
 
 :::note
-Dies ist eine automatische Übersetzung. Korrekturen aus der Community sind willkommen!
+Dies ist eine automatische Übersetzung. Korrekturen aus der Community sind willkommen! [Korrektur auf GitHub einreichen](https://github.com/gcsecsey/advanced-pixel-for-barion/edit/main/docs/i18n/de/events-reference.md)
 :::
 
 ## Übersicht

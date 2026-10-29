@@ -14,14 +14,13 @@ const en = {
 	htmlTitle: 'Plot Twist · WordPress, WooCommerce and AI automation',
 	description:
 		'Plot Twist is a software consultancy. We build and run WordPress and WooCommerce sites, automate the repetitive work around them with AI, and build customer service tools that answer faster.',
-	nav: { services: 'Services', plugins: 'Plugins', docs: 'Docs', blog: 'Blog', cta: 'Work with us' },
+	nav: { services: 'Services', plugins: 'Plugins', docs: 'Docs', blog: 'Blog', cta: 'Book a free call' },
 	langSwitch: { label: 'Magyar', short: 'HU', href: '/hu/' },
-	mailSubject: 'New project',
 	hero: {
 		title: 'WordPress, WooCommerce and AI,',
 		titleTwist: 'with a twist.',
-		lead: 'Plot Twist is a software consultancy. We build and run WordPress and WooCommerce sites, automate the repetitive work around them with AI, and build customer service tools that answer faster.',
-		cta: 'Work with us',
+		lead: "Let's rewrite the script: less manual work, faster answers, and an online store that keeps running. We help with WordPress, WooCommerce and AI automation, from planning to hosting and upkeep.",
+		cta: 'Book a free 30-minute call',
 		secondary: 'See our plugins',
 	},
 	drawing: {
@@ -59,6 +58,15 @@ const en = {
 			items: ['Cloud strategy', 'Systems design', 'Software engineering', 'Quality engineering', 'Application management', 'Marketing'],
 		},
 	},
+	ai: {
+		title: 'How we use AI',
+		lead: 'Three rules we keep on every AI project.',
+		notes: [
+			['Your data first', 'The AI answers from your own docs, products and orders, so customers get your answer, not a generic one.'],
+			['A person approves', 'Someone on your team approves the answers until they are good enough to go out on their own.'],
+			['We measure the hours saved', 'We measure the time you save. If a simple script is enough, we tell you and build that instead.'],
+		],
+	},
 	plugin: {
 		title: 'Our WordPress plugins',
 		lead: 'Read the code and the docs before the first call. This is the same standard we use for client work.',
@@ -68,10 +76,12 @@ const en = {
 		wporg: 'wordpress.org',
 		github: 'Source on GitHub',
 		specTitle: 'Specification',
+		// Copied from wordpress.org on 2026-10-28 (both languages); update it with each release.
 		spec: [
-			['Version', '1.0.0'],
+			['Version', '1.0.10'],
+			['Active installs', '80+'],
 			['WordPress', '5.0 or higher'],
-			['PHP', '7.2 or higher'],
+			['PHP', '7.4 or higher'],
 			['WooCommerce', '5.0 or higher'],
 			['Docs', '9 languages'],
 			['License', 'GPL-2.0-or-later'],
@@ -81,17 +91,26 @@ const en = {
 		title: 'How a project runs',
 		cols: { rev: 'No.', step: 'Step', what: 'What happens' },
 		rows: [
-			['1', 'Brief', 'You tell us what you need. We ask questions until the scope is clear.'],
+			['1', 'Call', 'A free 30-minute call. You tell us what you need, and we ask questions until the scope is clear.'],
 			['2', 'Scope', 'You get a written scope and an estimate before any work starts.'],
 			['3', 'Build', 'We build in small steps. You get a preview link at each step.'],
-			['4', 'Handover', 'You get the code, the docs and a walkthrough. We can look after it after launch.'],
+			['4', 'Handover', 'You get the code, the docs and a walkthrough.'],
+			['5', 'Improve', 'After a month, we show you the time saved and tune what needs it. We can also look after your site after launch.'],
 		],
 	},
 	contact: {
 		title: 'Have something to build?',
-		lead: 'Drop us a line at {email}',
+		lead: 'In a free 30-minute call, we look at your site and how your team works, and tell you the first step that pays off fastest.',
+		form: {
+			name: 'Name',
+			email: 'Email',
+			message: 'What do you need help with?',
+			privacy: 'We only use your details to reply to you.',
+			sent: 'Thanks! We got your message and will reply soon.',
+			error: 'Something went wrong. Please write to us at {email}.',
+		},
 	},
-	footer: { tagline: 'Software consultancy', docs: 'Plugin docs' },
+	footer: { docs: 'Plugin docs' },
 	blog: { title: 'Blog', description: 'News from Plot Twist.', back: 'All posts' },
 };
 
@@ -99,14 +118,13 @@ const hu: typeof en = {
 	htmlTitle: 'Plot Twist · WordPress, WooCommerce és AI-automatizálás',
 	description:
 		'A Plot Twist szoftverfejlesztő tanácsadó cég. WordPress- és WooCommerce-oldalakat építünk és üzemeltetünk, AI-jal automatizáljuk a körülöttük lévő ismétlődő munkát, és gyorsabban válaszoló ügyfélszolgálati eszközöket építünk.',
-	nav: { services: 'Szolgáltatások', plugins: 'Bővítmények', docs: 'Dokumentáció', blog: 'Blog', cta: 'Dolgozz velünk' },
+	nav: { services: 'Szolgáltatások', plugins: 'Bővítmények', docs: 'Dokumentáció', blog: 'Blog', cta: 'Kérj ingyenes hívást' },
 	langSwitch: { label: 'English', short: 'EN', href: '/' },
-	mailSubject: 'Új projekt',
 	hero: {
 		title: 'WordPress, WooCommerce és AI,',
 		titleTwist: 'egy kis csavarral.',
-		lead: 'A Plot Twist szoftverfejlesztő tanácsadó cég. WordPress- és WooCommerce-oldalakat építünk és üzemeltetünk, AI-jal automatizáljuk a körülöttük lévő ismétlődő munkát, és gyorsabban válaszoló ügyfélszolgálati eszközöket építünk.',
-		cta: 'Dolgozz velünk',
+		lead: 'Írjuk át a forgatókönyvet: kevesebb kézi munka, gyorsabb válaszok, és egy webshop, ami nem áll le. WordPressben, WooCommerce-ben és AI-automatizálásban segítünk, a tervezéstől az üzemeltetésig.',
+		cta: 'Kérj egy ingyenes 30 perces hívást',
 		secondary: 'Nézd meg a bővítményeinket',
 	},
 	drawing: {
@@ -144,6 +162,15 @@ const hu: typeof en = {
 			items: ['Felhőstratégia', 'Rendszertervezés', 'Szoftverfejlesztés', 'Minőségbiztosítás', 'Alkalmazás menedzsment', 'Marketing'],
 		},
 	},
+	ai: {
+		title: 'Így használjuk az AI-t',
+		lead: 'Három szabály, amit minden AI-projektben betartunk.',
+		notes: [
+			['Először a saját adataid', 'Az AI a saját dokumentációdból, termékeidből és rendeléseidből válaszol, így a vevő a te válaszodat kapja, nem egy általánosat.'],
+			['Ember hagyja jóvá', 'A csapatodból valaki jóváhagyja a válaszokat, amíg azok elég jók ahhoz, hogy maguktól is kimehessenek.'],
+			['Mérjük a megtakarított időt', 'Mérjük, mennyi időt spórolsz. Ha egy egyszerű szkript is elég, megmondjuk, és azt építjük meg.'],
+		],
+	},
 	plugin: {
 		title: 'WordPress-bővítményeink',
 		lead: 'Nézd meg a kódot és a dokumentációt még az első hívás előtt. Ügyfélmunkánál is ugyanezt a mércét használjuk.',
@@ -154,9 +181,10 @@ const hu: typeof en = {
 		github: 'Forráskód a GitHubon',
 		specTitle: 'Specifikáció',
 		spec: [
-			['Verzió', '1.0.0'],
+			['Verzió', '1.0.10'],
+			['Aktív telepítések', '80+'],
 			['WordPress', '5.0 vagy újabb'],
-			['PHP', '7.2 vagy újabb'],
+			['PHP', '7.4 vagy újabb'],
 			['WooCommerce', '5.0 vagy újabb'],
 			['Dokumentáció', '9 nyelven'],
 			['Licenc', 'GPL-2.0-or-later'],
@@ -166,17 +194,26 @@ const hu: typeof en = {
 		title: 'Így zajlik egy projekt',
 		cols: { rev: 'Sz.', step: 'Lépés', what: 'Mi történik' },
 		rows: [
-			['1', 'Igény', 'Elmondod, mire van szükséged. Addig kérdezünk, amíg a feladat világos.'],
+			['1', 'Hívás', 'Egy ingyenes 30 perces hívás. Elmondod, mire van szükséged, mi pedig addig kérdezünk, amíg a feladat világos.'],
 			['2', 'Terjedelem', 'Írásos feladatleírást és becslést kapsz, mielőtt bármi elkezdődik.'],
 			['3', 'Fejlesztés', 'Kis lépésekben építünk. Minden lépés után kapsz egy előnézeti linket.'],
-			['4', 'Átadás', 'Megkapod a kódot, a dokumentációt és egy bemutatót. Az indulás után is gondozhatjuk.'],
+			['4', 'Átadás', 'Megkapod a kódot, a dokumentációt és egy bemutatót.'],
+			['5', 'Finomítás', 'Egy hónap után megmutatjuk, mennyi időt spóroltál, és finomítjuk, amit kell. Az indulás után az oldaladat is gondozhatjuk.'],
 		],
 	},
 	contact: {
 		title: 'Van valami, amit meg kell építeni?',
-		lead: 'Írj nekünk a {email} címen',
+		lead: 'Egy ingyenes 30 perces hívásban átnézzük az oldaladat és azt, hogyan dolgozik a csapatod, és megmondjuk, melyik az a lépés, ami a leggyorsabban megtérül.',
+		form: {
+			name: 'Név',
+			email: 'E-mail',
+			message: 'Miben segíthetünk?',
+			privacy: 'Az adataidat csak a válaszhoz használjuk.',
+			sent: 'Köszönjük! Megkaptuk az üzenetedet, hamarosan válaszolunk.',
+			error: 'Valami hiba történt. Írj nekünk a {email} címen.',
+		},
 	},
-	footer: { tagline: 'Szoftverfejlesztő tanácsadás', docs: 'Bővítmény-dokumentáció' },
+	footer: { docs: 'Bővítmény-dokumentáció' },
 	blog: { title: 'Blog', description: 'Hírek a Plot Twisttől.', back: 'Összes bejegyzés' },
 };
 

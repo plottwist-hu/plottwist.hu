@@ -5,7 +5,7 @@ sidebar:
 ---
 
 :::note
-Toto je automatický překlad. Komunitní opravy jsou vítány!
+Toto je automatický překlad. Komunitní opravy jsou vítány! [Odeslat opravu na GitHubu](https://github.com/gcsecsey/advanced-pixel-for-barion/edit/main/docs/i18n/cs/cookie-consent.md)
 :::
 
 ## Přehled

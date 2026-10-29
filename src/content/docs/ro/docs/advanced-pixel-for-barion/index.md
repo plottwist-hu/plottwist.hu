@@ -6,7 +6,7 @@ sidebar:
 ---
 
 :::note
-Aceasta este o traducere automată. Corecțiile comunității sunt binevenite!
+Aceasta este o traducere automată. Corecțiile comunității sunt binevenite! [Trimiteți o corectură pe GitHub](https://github.com/gcsecsey/advanced-pixel-for-barion/edit/main/docs/i18n/README.ro.md)
 :::
 
 Integrare Barion Pixel pentru WooCommerce cu urmărirea completă a evenimentelor de e-commerce, suport pentru consimțământul cookie-urilor și compatibilitate cu WP Consent API.

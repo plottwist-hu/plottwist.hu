@@ -6,7 +6,7 @@ sidebar:
 ---
 
 :::note
-Ovo je automatski prevod. Ispravke zajednice su dobrodošle!
+Ovo je automatski prevod. Ispravke zajednice su dobrodošle! [Pošaljite ispravku na GitHubu](https://github.com/gcsecsey/advanced-pixel-for-barion/edit/main/docs/i18n/README.sr.md)
 :::
 
 Integracija Barion Pixel za WooCommerce sa potpunim praćenjem događaja e-trgovine, podrškom za saglasnost za kolačiće i kompatibilnošću sa WP Consent API.

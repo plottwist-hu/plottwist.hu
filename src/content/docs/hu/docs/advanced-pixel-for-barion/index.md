@@ -6,7 +6,7 @@ sidebar:
 ---
 
 :::note
-Ez egy automatikus fordítás. Közösségi javítások szívesen fogadottak!
+Ez egy automatikus fordítás. Közösségi javítások szívesen fogadottak! [Javítás beküldése a GitHubon](https://github.com/gcsecsey/advanced-pixel-for-barion/edit/main/docs/i18n/README.hu.md)
 :::
 
 Barion Pixel integráció WooCommerce-hez teljes e-kereskedelmi eseménykövetéssel, cookie-hozzájárulás támogatással és WP Consent API kompatibilitással.

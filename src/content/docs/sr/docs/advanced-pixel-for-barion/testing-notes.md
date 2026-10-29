@@ -5,7 +5,7 @@ sidebar:
 ---
 
 :::note
-Ovo je automatski prevod. Ispravke zajednice su dobrodošle!
+Ovo je automatski prevod. Ispravke zajednice su dobrodošle! [Pošaljite ispravku na GitHubu](https://github.com/gcsecsey/advanced-pixel-for-barion/edit/main/docs/i18n/sr/testing-notes.md)
 :::
 
 ## Specifičnosti validacije bp.js u realnom vremenu

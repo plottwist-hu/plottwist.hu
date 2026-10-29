@@ -6,7 +6,7 @@ sidebar:
 ---
 
 :::note
-Toto je automatický preklad. Komunitné opravy sú vítané!
+Toto je automatický preklad. Komunitné opravy sú vítané! [Odoslať opravu na GitHube](https://github.com/gcsecsey/advanced-pixel-for-barion/edit/main/docs/i18n/README.sk.md)
 :::
 
 Integrácia Barion Pixel pre WooCommerce s kompletným sledovaním e-commerce udalostí, podporou súhlasu s cookies a kompatibilitou s WP Consent API.
