@@ -1,0 +1,22 @@
+---
+import Default from '@astrojs/starlight/components/SocialIcons.astro';
+import { PLUGIN } from '../../i18n/strings';
+---
+
+<!-- Text, not icons: WordPress.org and WordPress.com share the same logo. -->
+<a class="wp" href={PLUGIN.wporg}>WordPress.org</a>
+<a class="wp" href={PLUGIN.wpcom}>WordPress.com</a>
+<Default />
+
+<style>
+	.wp {
+		color: var(--sl-color-text-accent);
+		font-size: var(--sl-text-sm);
+		text-decoration: none;
+		white-space: nowrap;
+	}
+
+	.wp:hover {
+		color: var(--sl-color-white);
+	}
+</style>
