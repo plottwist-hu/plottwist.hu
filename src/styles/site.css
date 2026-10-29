@@ -553,6 +553,10 @@ code {
 	color: var(--pt-neutral-300);
 }
 
+.schedule-also + .schedule-also {
+	margin-top: 12px;
+}
+
 .schedule-also span {
 	margin-right: 8px;
 	color: var(--pt-muted);
