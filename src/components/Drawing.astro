@@ -1,0 +1,92 @@
+---
+import { strings, type Lang } from '../i18n/strings';
+
+interface Props {
+	lang: Lang;
+}
+const t = strings[Astro.props.lang].drawing;
+
+// Drawing units: the viewBox is 4 4 168 112 and the mark's own 100 × 100 grid
+// sits at (28, 8). Labels are HTML, placed in the same units (see site.css).
+const at = (x: number, y: number) => `--x:${x};--y:${y}`;
+---
+
+<figure class="drawing">
+	<div class="drawing-canvas">
+		<svg viewBox="4 4 168 112" role="img" aria-label={t.label}>
+			<defs>
+				<linearGradient id="fade-x" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="180" y2="0">
+					<stop offset="0" class="fade-end"></stop>
+					<stop offset="0.15"></stop>
+					<stop offset="0.85"></stop>
+					<stop offset="1" class="fade-end"></stop>
+				</linearGradient>
+				<linearGradient id="fade-y" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="120">
+					<stop offset="0" class="fade-end"></stop>
+					<stop offset="0.15"></stop>
+					<stop offset="0.85"></stop>
+					<stop offset="1" class="fade-end"></stop>
+				</linearGradient>
+				<filter id="glow" x="-25%" y="-15%" width="150%" height="130%">
+					<feDropShadow dx="0" dy="0" stdDeviation="0.25" class="glow-near"></feDropShadow>
+					<feDropShadow dx="0" dy="0" stdDeviation="1" class="glow-far"></feDropShadow>
+				</filter>
+			</defs>
+			<g class="guides">
+				<line class="gh" x1="0" y1="26" x2="180" y2="26"></line>
+				<line class="gh" x1="0" y1="36" x2="180" y2="36"></line>
+				<line class="gh" x1="0" y1="80" x2="180" y2="80"></line>
+				<line class="gh" x1="0" y1="90" x2="180" y2="90"></line>
+				<line class="gv" x1="52" y1="0" x2="52" y2="120"></line>
+				<line class="gv" x1="76" y1="0" x2="76" y2="120"></line>
+				<line class="gv" x1="80" y1="0" x2="80" y2="120"></line>
+				<line class="gv" x1="104" y1="0" x2="104" y2="120"></line>
+			</g>
+
+			<g transform="translate(28 8)">
+				<circle class="radius" cx="48" cy="52" r="24"></circle>
+				<path class="half-l" d="M48 82 H24 V52 A24 24 0 0 1 48 28 Z"></path>
+				<g class="half-r">
+					<circle class="radius" cx="52" cy="48" r="24"></circle>
+					<path d="M52 18 H76 V48 A24 24 0 0 1 52 72 Z"></path>
+					<path class="leader" d="M76 34 H96"></path>
+					<circle class="dot" cx="76" cy="34" r="1.1"></circle>
+				</g>
+			</g>
+
+			<g class="dims">
+				<path d="M80 17 H104 M78.8 18.2 L81.2 15.8 M102.8 18.2 L105.2 15.8"></path>
+				<path d="M70 104 H86 M74.8 105.2 L77.2 102.8 M78.8 105.2 L81.2 102.8"></path>
+			</g>
+
+			<g class="leaders">
+				<path class="leader" d="M52 70 H36"></path>
+				<circle class="dot" cx="52" cy="70" r="1.1"></circle>
+				<path class="leader" d="M78 60 V96 H112"></path>
+				<circle class="dot" cx="78" cy="60" r="1.1"></circle>
+			</g>
+
+			<g class="twist">
+				<path d="M116 26 V36 M114.8 27.2 L117.2 24.8 M114.8 37.2 L117.2 34.8"></path>
+				<path d="M40 80 V90 M38.8 81.2 L41.2 78.8 M38.8 91.2 L41.2 88.8"></path>
+				<path class="leader" d="M96.97 72.97 L105 82"></path>
+			</g>
+		</svg>
+
+		<div class="labels" aria-hidden="true">
+			<span class="dim" style={at(92, 13)}>24</span>
+			<span class="dim" style={at(78, 109)}>4</span>
+			<span class="callout callout-end" style={at(34, 70)}><span class="callout-text">{t.a}</span><span class="balloon">A</span></span>
+			<span class="callout callout-b" style={at(126, 42)}><span class="balloon">B</span><span class="callout-text">{t.b}</span></span>
+			<span class="callout" style={at(114, 96)}><span class="balloon">C</span><span class="callout-text">{t.c}</span></span>
+			<span class="dim dim-twist twist" style={at(119, 31)}>10</span>
+			<span class="dim dim-end twist" style={at(37, 85)}>10</span>
+			<span class="dim dim-start twist" style={at(106, 84)}>R24</span>
+		</div>
+	</div>
+	<p class="drawing-key" aria-hidden="true">
+		<span><span class="balloon">A</span>{t.a}</span>
+		<span><span class="balloon">B</span>{t.b}</span>
+		<span><span class="balloon">C</span>{t.c}</span>
+	</p>
+</figure>

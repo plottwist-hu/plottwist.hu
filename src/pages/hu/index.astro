@@ -1,0 +1,10 @@
+---
+import Site from '../../layouts/Site.astro';
+import Home from '../../components/Home.astro';
+import { strings } from '../../i18n/strings';
+const t = strings.hu;
+---
+
+<Site lang="hu" title={t.htmlTitle} description={t.description} altPath="/">
+	<Home lang="hu" />
+</Site>

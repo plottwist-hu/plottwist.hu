@@ -1,0 +1,172 @@
+---
+import { Image } from 'astro:assets';
+import Drawing from './Drawing.astro';
+import Arrow from './Arrow.astro';
+import pluginIcon from '../assets/plugins/advanced-pixel-for-barion.png';
+import { TURNSTILE_SITE_KEY } from 'astro:env/client';
+import { strings, localePath, EMAIL, PLUGIN, type Lang } from '../i18n/strings';
+
+interface Props {
+	lang: Lang;
+}
+const { lang } = Astro.props;
+const t = strings[lang];
+const docs = localePath(lang, '/docs/advanced-pixel-for-barion/');
+const contactError = t.contact.form.error.split('{email}');
+---
+
+<section class="hero wrap">
+	<div class="hero-copy">
+		<h1>{t.hero.title} <span class="twist-words">{t.hero.titleTwist}</span></h1>
+		<p class="lead">{t.hero.lead}</p>
+		<div class="actions">
+			<a class="btn btn-lg" href="#contact">{t.hero.cta}</a>
+			<a class="text-link" href="#plugins">{t.hero.secondary} <Arrow direction="down" /></a>
+		</div>
+	</div>
+	<Drawing lang={lang} />
+</section>
+
+<section id="services" class="section wrap" aria-labelledby="services-title">
+	<header class="section-head">
+		<h2 id="services-title">{t.services.title}</h2>
+		<p>{t.services.lead}</p>
+	</header>
+	<div class="schedule">
+		{
+			t.services.groups.map((group) => (
+				<div class="schedule-group">
+					<h3>
+						<span class="balloon">{group.ref}</span>
+						{group.name}
+					</h3>
+					<p class="schedule-lead">{group.lead}</p>
+					<ul>
+						{group.items.map((item) => (
+							<li>{item}</li>
+						))}
+					</ul>
+				</div>
+			))
+		}
+	</div>
+	<p class="schedule-also">
+		<span>{t.services.also.label}:</span>
+		{t.services.also.items.join(' · ')}
+	</p>
+	<p class="schedule-also">
+		<span>{t.services.tools.label}:</span>
+		{t.services.tools.items.join(' · ')}
+	</p>
+</section>
+
+<section class="section wrap" aria-labelledby="ai-title">
+	<header class="section-head">
+		<h2 id="ai-title">{t.ai.title}</h2>
+		<p>{t.ai.lead}</p>
+	</header>
+	<div class="schedule">
+		{
+			t.ai.notes.map(([title, text], i) => (
+				<div class="schedule-group">
+					<h3>
+						<span class="rev">{i + 1}</span>
+						{title}
+					</h3>
+					<p class="schedule-lead">{text}</p>
+				</div>
+			))
+		}
+	</div>
+</section>
+
+<section id="plugins" class="band-tile" aria-labelledby="plugins-title">
+	<div class="section wrap">
+		<header class="section-head">
+			<h2 id="plugins-title">{t.plugin.title}</h2>
+			<p>{t.plugin.lead}</p>
+		</header>
+		<div class="sheet">
+			<div class="sheet-intro">
+				<div class="plugin-name">
+					<Image src={pluginIcon} alt="" width={56} height={56} densities={[1, 2]} class="plugin-icon" />
+					<h3>{PLUGIN.name}</h3>
+				</div>
+				<p>{t.plugin.summary}</p>
+				<div class="actions">
+					<a class="btn" href={docs}>{t.plugin.docs} <Arrow /></a>
+					<a class="text-link" href={PLUGIN.wporg}>{t.plugin.wporg} <Arrow direction="out" /></a>
+					<a class="text-link" href={PLUGIN.github}>{t.plugin.github} <Arrow direction="out" /></a>
+				</div>
+			</div>
+			<dl class="spec-list" aria-label={t.plugin.specTitle}>
+				{
+					t.plugin.spec.map(([k, v]) => (
+						<div>
+							<dt>{k}</dt>
+							<dd>{v}</dd>
+						</div>
+					))
+				}
+			</dl>
+		</div>
+	</div>
+</section>
+
+<section class="section wrap" aria-labelledby="process-title">
+	<header class="section-head">
+		<h2 id="process-title">{t.process.title}</h2>
+	</header>
+	<table class="spec-table revisions">
+		<thead>
+			<tr>
+				<th scope="col" class="col-ref">{t.process.cols.rev}</th>
+				<th scope="col">{t.process.cols.step}</th>
+				<th scope="col">{t.process.cols.what}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{
+				t.process.rows.map(([rev, step, what]) => (
+					<tr>
+						<td class="col-ref rev">{rev}</td>
+						<th scope="row">{step}</th>
+						<td>{what}</td>
+					</tr>
+				))
+			}
+		</tbody>
+	</table>
+</section>
+
+<section id="contact" class="contact" aria-labelledby="contact-title">
+	<div class="wrap">
+		<div class="titleblock">
+			<h2 id="contact-title">{t.contact.title}</h2>
+			<p>{t.contact.lead}</p>
+			<p id="contact-sent" class="form-status" role="status">{t.contact.form.sent}</p>
+			<p id="contact-error" class="form-status" role="alert">
+				{contactError[0]}<a href={`mailto:${EMAIL}`}>{EMAIL}</a>{contactError[1]}
+			</p>
+			<form class="contact-form" method="post" action="/api/contact">
+				<input type="hidden" name="lang" value={lang} />
+				<label>
+					{t.contact.form.name}
+					<input name="name" autocomplete="name" maxlength="200" required />
+				</label>
+				<label>
+					{t.contact.form.email}
+					<input name="email" type="email" autocomplete="email" required />
+				</label>
+				<label class="contact-form-wide">
+					{t.contact.form.message}
+					<textarea name="message" rows="5" maxlength="5000" required></textarea>
+				</label>
+				<div class="cf-turnstile contact-form-wide" data-sitekey={TURNSTILE_SITE_KEY} data-theme="dark"></div>
+				<button class="btn btn-lg" type="submit">{t.hero.cta}</button>
+				<p class="form-note">{t.contact.form.privacy}</p>
+			</form>
+			<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,12 @@
+---
+interface Props {
+	height?: number;
+	class?: string;
+}
+const { height = 24, class: className } = Astro.props;
+---
+
+<svg class={className} viewBox="16 14 68 72" height={height} width={Math.round((height * 68) / 72)} aria-hidden="true">
+	<path d="M52 18 H76 V48 A24 24 0 0 1 52 72 Z" fill="var(--pt-light)"></path>
+	<path d="M48 82 H24 V52 A24 24 0 0 1 48 28 Z" fill="var(--pt-base)"></path>
+</svg>

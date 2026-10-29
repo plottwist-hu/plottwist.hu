@@ -1,0 +1,34 @@
+---
+import Mark from './Mark.astro';
+import { strings, localePath, type Lang } from '../i18n/strings';
+
+interface Props {
+	lang: Lang;
+	altPath: string;
+}
+const { lang, altPath } = Astro.props;
+const t = strings[lang];
+const home = localePath(lang, '/');
+---
+
+<header class="site-header wrap">
+	<a class="lockup" href={home} aria-label="Plot Twist">
+		<Mark height={26} />
+		<span class="wordmark">Plot Twist</span>
+	</a>
+	<nav class="site-nav" aria-label={lang === 'hu' ? 'Fő navigáció' : 'Main'}>
+		<ul>
+			<li><a href={`${home}#services`}>{t.nav.services}</a></li>
+			<li><a href={`${home}#plugins`}>{t.nav.plugins}</a></li>
+			<li><a href={localePath(lang, '/docs/advanced-pixel-for-barion/')}>{t.nav.docs}</a></li>
+			<li><a href={localePath(lang, '/blog/')}>{t.nav.blog}</a></li>
+		</ul>
+	</nav>
+	<div class="header-end">
+		<a class="lang-switch" href={altPath} hreflang={lang === 'en' ? 'hu' : 'en'} lang={lang === 'en' ? 'hu' : 'en'}>
+			<span class="visually-hidden">{t.langSwitch.label}</span>
+			<span aria-hidden="true">{t.langSwitch.short}</span>
+		</a>
+		<a class="btn" href={`${home}#contact`}>{t.nav.cta}</a>
+	</div>
+</header>

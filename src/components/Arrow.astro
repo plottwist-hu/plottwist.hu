@@ -1,0 +1,16 @@
+---
+interface Props {
+	/** `out` points up-right for links that leave the site. */
+	direction?: 'right' | 'down' | 'out';
+}
+const { direction = 'right' } = Astro.props;
+const d = {
+	right: 'M3 8h10M9 4l4 4-4 4',
+	down: 'M8 3v10M4 9l4 4 4-4',
+	out: 'M5 11l6-6M6 5h5v5',
+}[direction];
+---
+
+<svg class="arrow" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+	<path d={d} fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>

@@ -1,0 +1,82 @@
+/* Glacier on Starlight. Dark is the brand default; light uses the paper tones. */
+:root {
+	--sl-font: var(--pt-font);
+	--sl-font-mono: var(--pt-font-mono);
+
+	--sl-color-accent-low: var(--pt-tile);
+	--sl-color-accent: var(--pt-base);
+	--sl-color-accent-high: var(--pt-light);
+	--sl-color-text-accent: var(--pt-base);
+
+	--sl-color-white: var(--pt-line);
+	--sl-color-gray-1: var(--pt-neutral-200);
+	--sl-color-gray-2: var(--pt-neutral-300);
+	--sl-color-gray-3: var(--pt-neutral-500);
+	--sl-color-gray-4: var(--pt-neutral-700);
+	--sl-color-gray-5: var(--pt-neutral-800);
+	--sl-color-gray-6: var(--pt-surface);
+	--sl-color-black: var(--pt-ground);
+	--sl-color-bg-nav: var(--pt-ground);
+	--sl-color-bg-sidebar: var(--pt-ground);
+
+	/* Note asides use the blue set. */
+	--sl-color-blue-low: var(--pt-tile);
+	--sl-color-blue: var(--pt-base);
+	--sl-color-blue-high: var(--pt-light);
+}
+
+:root[data-theme='light'] {
+	--sl-color-accent-low: var(--pt-light);
+	--sl-color-accent: var(--pt-mark-on-paper);
+	--sl-color-accent-high: var(--pt-deep);
+	/* #6f87a6 on paper is 3.4:1, too low for link text. */
+	--sl-color-text-accent: var(--pt-deep);
+
+	--sl-color-white: var(--pt-ground);
+	--sl-color-gray-1: var(--pt-neutral-900);
+	--sl-color-gray-2: var(--pt-neutral-800);
+	--sl-color-gray-3: var(--pt-neutral-700);
+	--sl-color-gray-4: var(--pt-neutral-600);
+	--sl-color-gray-5: var(--pt-neutral-300);
+	--sl-color-gray-6: #e3e8ef;
+	--sl-color-gray-7: #eaeef4;
+	--sl-color-black: var(--pt-paper);
+	--sl-color-bg-nav: var(--pt-paper);
+	--sl-color-bg-sidebar: var(--pt-paper);
+
+	--sl-color-blue-low: var(--pt-light);
+	--sl-color-blue: var(--pt-mark-on-paper);
+	--sl-color-blue-high: var(--pt-deep);
+}
+
+/* Brand rule: headings and the wordmark never go past Medium 500. */
+.site-title {
+	gap: 0.625rem;
+	font-size: 1.125rem;
+	font-weight: 500;
+	letter-spacing: -0.03em;
+	color: var(--sl-color-white);
+}
+
+/* Lockup rule: mark height is about 1.4× the wordmark's cap height. */
+.site-title img {
+	height: 1.625rem;
+}
+h1,
+.sl-markdown-content :is(h2, h3, h4, h5, h6) {
+	font-weight: 500;
+	letter-spacing: -0.02em;
+}
+
+.sl-markdown-content code:not(pre code) {
+	font-size: 0.875em;
+}
+
+.starlight-aside {
+	border: 1px solid var(--sl-color-asides-border);
+	border-radius: 8px;
+}
+
+::selection {
+	background: color-mix(in srgb, var(--sl-color-accent) 35%, transparent);
+}

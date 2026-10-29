@@ -1,0 +1,28 @@
+/* Plot Twist brand guide v0.1, Glacier scheme. Shared by the site and the docs. */
+:root {
+	--pt-ground: #161826;
+	--pt-surface: #232532;
+	--pt-tile: #26334a;
+	--pt-light: #d6e2f0;
+	--pt-base: #8fa6c4;
+	--pt-glow: #7189a8;
+	--pt-line: #eaf0f7;
+	--pt-paper: #f2f5f9;
+	--pt-mark-on-paper: #6f87a6;
+	--pt-deep: #34445c;
+	--pt-text: #e9e9ed;
+	--pt-muted: #9397ab;
+
+	/* Nocturne neutral ramp; Glacier shares Nocturne's ground. */
+	--pt-neutral-200: #e4e7f5;
+	--pt-neutral-300: #cfd3e5;
+	--pt-neutral-500: #9397ab;
+	--pt-neutral-600: #75798c;
+	--pt-neutral-700: #595d6c;
+	--pt-neutral-800: #3f424d;
+	--pt-neutral-900: #292b31;
+
+	--pt-divider: color-mix(in srgb, var(--pt-text) 16%, transparent);
+	--pt-font: 'Geist Variable', system-ui, sans-serif;
+	--pt-font-mono: 'Geist Mono Variable', ui-monospace, monospace;
+}

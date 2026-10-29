@@ -1,0 +1,51 @@
+---
+import '@fontsource-variable/geist';
+import '@fontsource-variable/geist-mono';
+import '../styles/tokens.css';
+import '../styles/site.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import type { Lang } from '../i18n/strings';
+
+interface Props {
+	lang: Lang;
+	title: string;
+	description: string;
+	/** The same page in the other language. */
+	altPath: string;
+}
+const { lang, title, description, altPath } = Astro.props;
+const here = Astro.url.pathname;
+const href = (path: string) => new URL(path, Astro.site).href;
+const enPath = lang === 'en' ? here : altPath;
+const huPath = lang === 'hu' ? here : altPath;
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={href(here)} />
+		<link rel="alternate" hreflang="en" href={href(enPath)} />
+		<link rel="alternate" hreflang="hu" href={href(huPath)} />
+		<link rel="alternate" hreflang="x-default" href={href(enPath)} />
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={href(here)} />
+		<meta name="theme-color" content="#161826" />
+	</head>
+	<body>
+		<a class="skip-link" href="#main">{lang === 'hu' ? 'Ugrás a tartalomhoz' : 'Skip to content'}</a>
+		<Header lang={lang} altPath={altPath} />
+		<main id="main">
+			<slot />
+		</main>
+		<Footer lang={lang} />
+	</body>
+</html>
