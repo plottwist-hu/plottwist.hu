@@ -1,0 +1,50 @@
+---
+import Default from '@astrojs/starlight/components/SiteTitle.astro';
+import Mark from '../Mark.astro';
+import { strings, localePath } from '../../i18n/strings';
+
+const lang = Astro.locals.starlightRoute.locale === 'hu' ? 'hu' : 'en';
+---
+
+<div class="split-title">
+	<a class="home" href={localePath(lang, '/')}>
+		<Mark height={22} class="pt-mark" />
+		<span class="sr-only">{strings[lang].footer.home}</span>
+	</a>
+	<Default />
+</div>
+
+<style>
+	.split-title {
+		display: flex;
+		align-items: center;
+		gap: 0.875rem;
+		min-width: 0;
+	}
+
+	.home {
+		display: flex;
+		padding-inline-end: 0.875rem;
+		border-inline-end: 1px solid var(--sl-color-hairline-shade);
+	}
+
+	/* The plugin name needs the room on phones. */
+	@media (max-width: 50rem) {
+		.split-title,
+		.split-title :global(.site-title) {
+			gap: 0.625rem;
+		}
+
+		.home {
+			padding-inline-end: 0.625rem;
+		}
+
+		.split-title :global(.site-title) {
+			font-size: 1rem;
+		}
+
+		.split-title :global(.site-title img) {
+			display: none;
+		}
+	}
+</style>

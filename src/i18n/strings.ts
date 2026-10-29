@@ -4,8 +4,14 @@ export const EMAIL = 'hello@plottwist.hu';
 export const PLUGIN = {
 	name: 'Advanced Pixel for Barion',
 	wporg: 'https://wordpress.org/plugins/advanced-pixel-for-barion/',
+	wpcom: 'https://wordpress.com/plugins/advanced-pixel-for-barion',
 	github: 'https://github.com/gcsecsey/advanced-pixel-for-barion',
 };
+export const SOCIAL = [
+	{ label: 'LinkedIn', href: 'https://www.linkedin.com/company/plottwist-hu' },
+	{ label: 'Facebook', href: 'https://www.facebook.com/plottwist.hu' },
+	{ label: 'GitHub', href: 'https://github.com/plottwist-hu' },
+];
 
 /** Prefix a site path with the locale. */
 export const localePath = (lang: Lang, path: string) => (lang === 'en' ? path : `/hu${path}`);
@@ -114,7 +120,7 @@ const en = {
 			error: 'Something went wrong. Please write to us at {email}.',
 		},
 	},
-	footer: { docs: 'Plugin docs' },
+	footer: { docs: 'Plugin docs', company: 'Company', home: 'Plot Twist home page' },
 	blog: { title: 'Blog', description: 'News from Plot Twist.', back: 'All posts' },
 };
 
@@ -221,7 +227,7 @@ const hu: typeof en = {
 			error: 'Valami hiba történt. Írj nekünk a {email} címen.',
 		},
 	},
-	footer: { docs: 'Bővítmény-dokumentáció' },
+	footer: { docs: 'Bővítmény-dokumentáció', company: 'Cég', home: 'A Plot Twist főoldala' },
 	blog: { title: 'Blog', description: 'Hírek a Plot Twisttől.', back: 'Összes bejegyzés' },
 };
 

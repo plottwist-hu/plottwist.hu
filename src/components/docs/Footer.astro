@@ -1,0 +1,126 @@
+---
+import Default from '@astrojs/starlight/components/Footer.astro';
+import Mark from '../Mark.astro';
+import { strings, localePath, EMAIL, PLUGIN, SOCIAL } from '../../i18n/strings';
+
+const route = Astro.locals.starlightRoute;
+const lang = route.locale === 'hu' ? 'hu' : 'en';
+const t = strings[lang];
+const home = localePath(lang, '/');
+const columns = [
+	{
+		title: t.nav.services,
+		links: t.services.groups.map(({ name }) => ({ label: name, href: `${home}#services` })),
+	},
+	{
+		title: t.nav.plugins,
+		links: [
+			// routeData.ts points the site title at this plugin's docs in the current language.
+			{ label: PLUGIN.name, href: route.siteTitleHref },
+			{ label: 'WordPress.org', href: PLUGIN.wporg },
+			{ label: 'WordPress.com', href: PLUGIN.wpcom },
+			{ label: 'GitHub', href: PLUGIN.github },
+		],
+	},
+	{
+		title: t.footer.company,
+		links: [
+			{ label: t.nav.blog, href: localePath(lang, '/blog/') },
+			{ label: t.nav.cta, href: `${home}#contact` },
+			{ label: EMAIL, href: `mailto:${EMAIL}` },
+			...SOCIAL,
+		],
+	},
+];
+---
+
+<Default />
+
+<div class="company">
+	<a class="brand" href={home}>
+		<Mark height={22} class="pt-mark" />
+		Plot Twist
+	</a>
+	{
+		columns.map(({ title, links }, i) => (
+			<div>
+				<p class="title" id={`company-footer-${i}`}>
+					{title}
+				</p>
+				<ul aria-labelledby={`company-footer-${i}`}>
+					{links.map(({ label, href }) => (
+						<li>
+							<a href={href}>{label}</a>
+						</li>
+					))}
+				</ul>
+			</div>
+		))
+	}
+	<p class="copy">© {new Date().getFullYear()} Plot Twist</p>
+</div>
+
+<style>
+	.company {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 2rem 1.5rem;
+		margin-top: 4rem;
+		padding-top: 2rem;
+		border-top: 1px solid var(--sl-color-hairline);
+		font-size: var(--sl-text-sm);
+	}
+
+	.brand {
+		display: flex;
+		align-items: center;
+		align-self: start;
+		gap: 0.5rem;
+		color: var(--sl-color-white);
+		font-weight: 500;
+		text-decoration: none;
+	}
+
+	.title {
+		margin: 0 0 0.75rem;
+		color: var(--sl-color-gray-3);
+		font-size: var(--sl-text-xs);
+		font-weight: 500;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	ul {
+		display: grid;
+		gap: 0.5rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	ul a {
+		color: var(--sl-color-gray-2);
+		text-decoration: none;
+	}
+
+	ul a:hover {
+		color: var(--sl-color-white);
+	}
+
+	.copy {
+		grid-column: 1 / -1;
+		margin: 0;
+		color: var(--sl-color-gray-3);
+		font-size: var(--sl-text-xs);
+	}
+
+	@media (max-width: 50rem) {
+		.company {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.brand {
+			grid-column: 1 / -1;
+		}
+	}
+</style>

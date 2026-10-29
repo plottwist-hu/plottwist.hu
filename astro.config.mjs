@@ -34,6 +34,11 @@ export default defineConfig({
 			title: 'Advanced Pixel for Barion',
 			logo: { src: './src/assets/plugins/advanced-pixel-for-barion.png' },
 			routeMiddleware: './src/routeData.ts',
+			components: {
+				SiteTitle: './src/components/docs/SiteTitle.astro',
+				SocialIcons: './src/components/docs/SocialIcons.astro',
+				Footer: './src/components/docs/Footer.astro',
+			},
 			favicon: '/favicon.svg',
 			defaultLocale: 'root',
 			locales: {

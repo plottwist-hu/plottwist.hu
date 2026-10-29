@@ -80,3 +80,12 @@ h1,
 ::selection {
 	background: color-mix(in srgb, var(--sl-color-accent) 35%, transparent);
 }
+
+/* The mark's Light half disappears on Paper; the brand guide's on-light tones keep it visible. */
+:root[data-theme='light'] .pt-mark path:first-child {
+	fill: var(--pt-mark-on-paper);
+}
+
+:root[data-theme='light'] .pt-mark path:last-child {
+	fill: var(--pt-deep);
+}
