@@ -3,6 +3,9 @@
 	"name": "plottwist-hu",
 	"main": "@astrojs/cloudflare/entrypoints/server",
 	"compatibility_date": "2026-10-20",
+	"routes": [{ "pattern": "plottwist.hu", "custom_domain": true }],
+	// Routes turn workers.dev off by default; Previews live on that subdomain.
+	"workers_dev": true,
 	// Email Routing is on for plottwist.hu, so the Worker can send to verified destination addresses for free.
 	"send_email": [{ "name": "EMAIL" }],
 }
