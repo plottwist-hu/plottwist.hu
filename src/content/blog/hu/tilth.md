@@ -45,6 +45,8 @@ A Tilth sima ES-modulokból áll, buildlépés nélkül. A rajzok SVG-k, a hango
 
 A jelenlegi verzió az 1.16.4. A változásokat a [kiadási jegyzetekben](https://github.com/pltwst/tilth/releases) találod.
 
+A forráskód [a GitHubon](https://github.com/pltwst/tilth) érhető el. Hibajelentéseket és pull requesteket is szívesen fogadunk. Ha segítenél, olvasd el a README [Contributing](https://github.com/pltwst/tilth#contributing) részét.
+
 ## Köszönjük, Topsoil
 
 A Tilth rajongói tisztelgés a *Topsoil* (2017) előtt. Ezt az iOS-játékot Nico Prins készítette, és már nem érhető el az App Store-ban. A Tilth saját rajzokkal és hangokkal alkotja újra a szabályait. A Tilth független projekt: nem kapcsolódik Nico Prinshez, és ő nem is hagyta jóvá.

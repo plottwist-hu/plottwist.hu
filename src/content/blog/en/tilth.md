@@ -45,6 +45,8 @@ Tilth is plain ES modules with no build step. The art is SVG, and Web Audio make
 
 The current version is 1.16.4. See what changed in the [release notes](https://github.com/pltwst/tilth/releases).
 
+The source code is [on GitHub](https://github.com/pltwst/tilth). Issues and pull requests are welcome. To get started, read the [Contributing](https://github.com/pltwst/tilth#contributing) section of the README.
+
 ## Thank you, Topsoil
 
 Tilth is a fan-made homage to *Topsoil* (2017), an iOS game by Nico Prins. Topsoil is no longer in the App Store. Tilth recreates its rules with original art and sound. Tilth is not affiliated with or endorsed by Nico Prins.
